@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تقييم ورشة عمل جامعيون</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --star-color: #fbbf24;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 650px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin: 0 0 10px 0;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .section-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin: 30px 0 20px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: var(--primary);
+            margin-left: 10px;
+            border-radius: 2px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .stars-wrapper {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .stars-wrapper input {
+            display: none;
+        }
+
+        .stars-wrapper label {
+            font-size: 2rem;
+            color: #cbd5e1;
+            cursor: pointer;
+            transition: transform 0.2s, color 0.2s;
+            margin: 0;
+        }
+
+        .stars-wrapper label:hover,
+        .stars-wrapper label:hover ~ label,
+        .stars-wrapper input:checked ~ label {
+            color: var(--star-color);
+        }
+
+        .stars-wrapper label:active {
+            transform: scale(0.9);
+        }
+
+        .submit-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .submit-btn:disabled {
+            background-color: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .footer-text {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 25px;
+        }
+
+        #success-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: #dcfce7;
+            color: #166534;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <div class="header">
+        <h1>جامعيون 🎓</h1>
+        <p>تقييم ورشة "التحضير لمقابلات العمل"</p>
+        <p style="font-size: 0.85rem; color: #ef4444;">هذا التقييم مجهول الهوية ولا يتطلب معلومات شخصية</p>
+    </div>
+
+    <form id="evaluation-form" action="https://formspree.io/f/xdkowdzv" method="POST">
+        
+        <div class="section-title">تقييم المدرب</div>
+
+        <div class="input-group">
+            <label>مدى تمكن المدرب من إيصال المعلومات:</label>
+            <div class="stars-wrapper">
+                <input type="radio" name="تقييم_المدرب" id="st1" value="5" required><label for="st1">★</label>
+                <input type="radio" name="تقييم_المدرب" id="st2" value="4"><label for="st2">★</label>
+                <input type="radio" name="تقييم_المدرب" id="st3" value="3"><label for="st3">★</label>
+                <input type="radio" name="تقييم_المدرب" id="st4" value="2"><label for="st4">★</label>
+                <input type="radio" name="تقييم_المدرب" id="st5" value="1"><label for="st5">★</label>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="interaction">كيف تصف تفاعل المدرب مع الحضور؟</label>
+            <select name="تفاعل_المدرب" id="interaction" required>
+                <option value="" disabled selected>اختر الإجابة...</option>
+                <option value="تفاعلي جداً وممتاز">تفاعلي جداً وممتاز</option>
+                <option value="جيد جداً">جيد جداً</option>
+                <option value="جيد">جيد</option>
+                <option value="يحتاج تحسين">يحتاج تحسين</option>
+            </select>
+        </div>
+
+        <div class="section-title">تقييم المحتوى</div>
+
+        <div class="input-group">
+            <label>مدى جودة المادة العلمية والعروض التقديمية:</label>
+            <div class="stars-wrapper">
+                <input type="radio" name="تقييم_المحتوى" id="c1" value="5" required><label for="c1">★</label>
+                <input type="radio" name="تقييم_المحتوى" id="c2" value="4"><label for="c2">★</label>
+                <input type="radio" name="تقييم_المحتوى" id="c3" value="3"><label for="c3">★</label>
+                <input type="radio" name="تقييم_المحتوى" id="c4" value="2"><label for="c4">★</label>
+                <input type="radio" name="تقييم_المحتوى" id="c5" value="1"><label for="c5">★</label>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="benefit">هل كانت النصائح عملية وقابلة للتطبيق؟</label>
+            <select name="الفائدة_العملية" id="benefit" required>
+                <option value="نعم، مفيدة جداً">نعم، مفيدة جداً</option>
+                <option value="إلى حد ما">إلى حد ما</option>
+                <option value="غير مفيدة">غير مفيدة</option>
+            </select>
+        </div>
+
+        <div class="section-title">التطوير المستقبلي</div>
+
+        <div class="input-group">
+            <label for="future-interest">هل ترغب في حضور ورش عمل متقدمة في نفس هذا المساق مع هذا المدرب؟</label>
+            <select name="الرغبة_في_ورشة_مستقبلية" id="future-interest" required>
+                <option value="" disabled selected>اختر...</option>
+                <option value="نعم، بالتأكيد">نعم، بالتأكيد</option>
+                <option value="ربما في وقت لاحق">ربما في وقت لاحق</option>
+                <option value="أفضل تجربة مدربين آخرين">أفضل تجربة مدربين آخرين</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="suggested-topic">اقترح عنواناً أو موضوعاً تود من المدرب طرحه في الورشة القادمة:</label>
+            <input type="text" name="الموضوع_المقترح" id="suggested-topic" placeholder="مثال: أسرار التفاوض على الرواتب">
+        </div>
+
+        <div class="section-title">رأيك يهمنا</div>
+
+        <div class="input-group">
+            <label for="message">ما هو أكثر شيء نال إعجابك؟ وكيف نطور أنفسنا؟</label>
+            <textarea name="ملاحظات" id="message" rows="4" placeholder="اكتب رأيك بكل صراحة..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submit-button">إرسال التقييم الآن</button>
+
+        <div id="success-message">شكراً لك! تم إرسال تقييمك بنجاح.</div>
+
+        <p class="footer-text">فريق جامعيون يتمنى لك التوفيق في مقابلاتك القادمة ✨</p>
+    </form>
+</div>
+
+<script>
+    const form = document.getElementById('evaluation-form');
+    const btn = document.getElementById('submit-button');
+    const successMsg = document.getElementById('success-message');
+
+    form.addEventListener('submit', function() {
+        btn.disabled = true;
+        btn.innerText = 'جاري الإرسال...';
+        
+        setTimeout(() => {
+            successMsg.style.display = 'block';
+        }, 500);
+    });
+</script>
+
+</body>
+</html>
